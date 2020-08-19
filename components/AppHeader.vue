@@ -40,6 +40,7 @@ export default {
     menus: [
       {title: 'ダッシュボード', icon: 'mdi-home', to: '/'},
       {title: '暗号化パスワード確認', icon: 'mdi-key', to: '/encrypted_password'},
+      {title: 'ListLoader定義変換', icon: 'mdi-format-list-bulleted', to: '/convert_listloader'},
     ],
     appName: process.env.APP_NAME
   }),
