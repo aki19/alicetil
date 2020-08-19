@@ -71,10 +71,11 @@ export default {
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
-        //TODO
-        this.$axios.$get('http://localhost:8000/api/items/1').then(res => {
-          console.log(res);
-          this.encrypted_password = res.title;
+        this.$axios.$post('http://localhost:8000/api/encryption', {
+          id: this.admin_id,
+          password: this.password
+        }).then(res => {
+          this.encrypted_password = res.encrypted_password;
         });
       }
     }
