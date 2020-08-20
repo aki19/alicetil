@@ -71,7 +71,7 @@ export default {
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
-        this.$axios.$post('http://localhost:8000/api/encryption', {
+        this.$axios.$post(process.env.API+'encryption', {
           id: this.admin_id,
           password: this.password
         }).then(res => {

@@ -1,3 +1,5 @@
+require('dotenv').config();
+const {API} = process.env;
 
 export default {
   /*
@@ -71,6 +73,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Axios module configuration
@@ -85,6 +88,7 @@ export default {
   build: {
   },
   env: {
-    APP_NAME: process.env.npm_package_name
+    APP_NAME: process.env.npm_package_name,
+    API
   }
 }
