@@ -24,6 +24,7 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
+              ※一部の機能は許可されたIPからのアクセスのみ有効です。
             </v-card-text>
           </v-card>
         </v-col>
