@@ -1,0 +1,25 @@
+[
+  {
+    "title": "ダッシュボード",
+    "icon": "home",
+    "to": "/"
+  },
+  {
+    "title": "暗号化パスワード確認",
+    "icon": "vpn_key",
+    "to": "/encrypted_password",
+    "info": "指定したパスワードをv4以降の暗号化ルールで暗号化する（DBに直接データ入れる用）"
+  },
+  {
+    "title": "ListLoader定義変換",
+    "icon": "list",
+    "to": "/convert_listloader",
+    "info": "FWで定義する形式からListLoaderに格納する形式に変換する"
+  },
+  {
+    "title": "タスク出力",
+    "icon": "event_available",
+    "to": "/issue",
+    "info": "ijukenのリリーススケジュールを確認する"
+  }
+]

@@ -12,15 +12,20 @@
         justify="center"
       >
         <v-col>
-          <v-alert
-            border="top"
-            colored-border
-            type="info"
-            elevation="2"
-          >
-            Vestibulum ullamcorper mauris at ligula. Nam pretium turpis et arcu. Ut varius tincidunt libero.
-            Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Morbi nec metus.
-          </v-alert>
+          <v-card>
+            <v-card-title>便利くんを集めたサイト。</v-card-title>
+            <v-card-text>
+              <v-list two-line>
+                <v-list-item v-for="menu in getFunctionMenu"
+                             :key="menu.title">
+                  <v-list-item-content>
+                    <v-list-item-title>{{ menu.title }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ menu.info }}</v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -28,11 +33,18 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   data() {
     return {
       title: 'ダッシュボード',
     }
+  },
+  computed: {
+    ...mapGetters({
+      getFunctionMenu: 'menu/getFunctionMenu',
+    }),
   },
   head() {
     return {

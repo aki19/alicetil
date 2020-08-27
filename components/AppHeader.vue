@@ -8,7 +8,7 @@
       bottom
     >
       <v-list dense>
-        <v-list-item v-for="menu in menus"
+        <v-list-item v-for="menu in getMenu"
                      :key="menu.title" :to="menu.to" link>
           <v-list-item-icon>
             <v-icon>{{ menu.icon }}</v-icon>
@@ -32,19 +32,19 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: "AppHeader",
   data: () => ({
     drawer: null,
     toggleMini: false,
-    menus: [
-      {title: 'ダッシュボード', icon: 'mdi-home', to: '/'},
-      {title: '暗号化パスワード確認', icon: 'mdi-key', to: '/encrypted_password'},
-      {title: 'ListLoader定義変換', icon: 'mdi-format-list-bulleted', to: '/convert_listloader'},
-    ],
     appName: process.env.APP_NAME
   }),
   computed: {
+    ...mapGetters({
+      getMenu: 'menu/getMenu',
+    }),
     mini() {
       return this.toggleMini;
     }
