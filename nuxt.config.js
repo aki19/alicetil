@@ -39,6 +39,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    'plugins/vuetify'
   ],
   /*
   ** Auto import components

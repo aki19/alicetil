@@ -14,7 +14,9 @@
     "@nuxtjs/vuetify": "^1.11.2",
     "nuxt": "^2.14.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "material-design-icons-iconfont": "^5.0.1"
+  },
   "config": {
     "nuxt": {
       "host": "0.0.0.0",
