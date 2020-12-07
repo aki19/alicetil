@@ -53,6 +53,14 @@
             dense
             class="elevation-1"
           >
+            <template v-slot:item.parent_name="{ item }">
+              <v-chip
+                color="info"
+                dark
+              >
+                {{ item.parent_name }}
+              </v-chip>
+            </template>
           </v-data-table>
         </v-col>
       </v-row>
@@ -72,6 +80,7 @@ export default {
       issues: [],
 
       headers: [
+        {text: "対象システム", value: "parent_name"},
         {text: "キー", align: 'center', value: "key"},
         {text: "要約", value: "name"},
         {text: "ステータス", value: "status"},
