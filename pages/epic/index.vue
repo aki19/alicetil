@@ -16,15 +16,13 @@
             <v-card-title class="subtitle-1">検索条件</v-card-title>
             <v-card-text>
               <v-form ref="form" v-model="valid">
-                <v-select
-                  :items="sprints"
-                  item-value="id"
-                  item-text="name"
-                  v-model="sprint_id"
+                <v-text-field
+                  ref="epic_key"
+                  v-model="epic_key"
                   :rules="[required]"
-                  label="スプリント"
+                  label="タスク番号"
                   required
-                ></v-select>
+                ></v-text-field>
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -43,25 +41,20 @@
         justify="center"
       >
         <v-col>
-          <v-card>
-            <v-card-title>{{sprint_name}}</v-card-title>
-          </v-card>
           <v-data-table
             :headers="headers"
             :items="issues"
+            disable-pagination
             disable-sort
+            hide-default-footer
             dense
             class="elevation-1"
           >
-            <template v-slot:item.parent_name="{ item }">
-              <v-chip
-                color="info"
-                dark
-              >
-                {{ item.parent_name }}
-              </v-chip>
-            </template>
           </v-data-table>
+          <br/>
+          <v-btn :disabled="issues.length == 0" color="info" @click="copy">
+            コピー
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -72,19 +65,15 @@
 export default {
   data() {
     return {
-      title: 'リリーススケジュール確認',
+      title: '子タスク出力',
 
       valid: false,
-      sprint_id: '',
-      sprint_name:'',
+      epic_key:'',
       issues: [],
 
       headers: [
-        {text: "対象システム", value: "parent_name"},
         {text: "キー", align: 'center', value: "key"},
         {text: "要約", value: "name"},
-        {text: "ステータス", value: "status"},
-        {text: "担当者", value: "person"}
       ],
 
       required: value => !!value || "選択してください。"
@@ -92,19 +81,24 @@ export default {
   },
   methods: {
     submit() {
-      console.log(this.sprint_id.name);
       if (this.$refs.form.validate()) {
-        this.$axios.$post(process.env.API + 'jira/get_issue_list', {
-          sprint_id: this.sprint_id,
+        this.$axios.$post(process.env.API + 'jira/get_epic_issue_list', {
+          epic_key: this.epic_key,
         }).then(res => {
           this.issues = res;
         });
       }
+    },
+    copy() {
+        var range = document.createRange();
+        let containerNode = document.querySelector("tbody"); //// this part
+        range.selectNode(containerNode); //// this part
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        alert("data copied");
     }
-  },
-  async asyncData({app}) {
-    const res = await app.$axios.$get(process.env.API + 'jira/get_sprint_list');
-    return {sprints: res};
   },
   head() {
     return {
