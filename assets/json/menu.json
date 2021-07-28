@@ -19,13 +19,13 @@
   {
     "title": "リリーススケジュール確認",
     "icon": "event_available",
-    "to": "/issue",
+    "to": "/sprint",
     "info": "【ijuken】指定したメンテ日にリリースされるタスクを確認する"
   },
   {
     "title": "子タスク出力",
     "icon": "check_box",
-    "to": "/epic",
+    "to": "/issue",
     "info": "【ijuken】指定したタスクの子タスクを確認する"
   }
 ]
