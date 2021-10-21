@@ -27,5 +27,11 @@
     "icon": "check_box",
     "to": "/issue",
     "info": "【ijuken】指定したタスクの子タスクを確認する"
+  },
+  {
+    "title": "タイムライン確認",
+    "icon": "timeline",
+    "to": "/timeline",
+    "info": "【ijuken】リリース済の製品タスクを確認する"
   }
 ]
