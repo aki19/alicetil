@@ -62,12 +62,17 @@
             </v-card-actions>
             <v-card-text>
               <v-textarea
+                ref="output"
                 v-model="output"
                 label="変換後"
                 filled
-                disabled
               ></v-textarea>
             </v-card-text>
+            <v-card-actions>
+              <v-btn :disabled="!output" color="info" @click="copy">
+                コピー
+              </v-btn>
+            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
@@ -101,6 +106,12 @@ export default {
           this.output = res;
         });
       }
+    },
+    copy() {
+        let textToCopy = this.$refs.output.$el.querySelector('textarea');
+        textToCopy.select();
+        document.execCommand("copy");
+        alert("data copied");
     }
   },
   head() {
